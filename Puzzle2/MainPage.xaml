@@ -4,15 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <VerticalStackLayout Margin="20" Spacing="10">
-        <Button
-            x:Name="refreshBtn"
-            Clicked="RefreshBtn_OnClicked"
-            HorizontalOptions="Start"
-            Text="Refresh"
-            WidthRequest="100" />
-        <AbsoluteLayout x:Name="MainLayout" />
-
-    </VerticalStackLayout>
+    <AbsoluteLayout
+        x:Name="MainLayout"
+        HorizontalOptions="Center"
+        VerticalOptions="Center" />
 
 </ContentPage>

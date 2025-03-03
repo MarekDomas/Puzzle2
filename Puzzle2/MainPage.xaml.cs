@@ -7,21 +7,18 @@ namespace Puzzle2;
 
 public partial class MainPage : ContentPage
 {
-    private static float sideWidth = 146 / 1.5f;
-    private static float sideHeight = 76 / 1.5f;
+    private static float sideWidth = 146 ;
+    private static float sideHeight = 76 ;
     private static List<Image> puzzles = [];
     private static int gridWidth = 5;
     private static int gridHeight = 5;
-    //private static Grid grid;
-    //private static DragGestureRecognizer dragGestureRecognizer = new();
     public MainPage()
     {
         InitializeComponent();
-        initialazeGrid();
+        initialazePuzzle();
     }
-
-
-    void initialazeGrid()
+    
+    void initialazePuzzle()
     {
         var n = 0;
         for (var i = 0; i < gridWidth; i++)
@@ -68,10 +65,5 @@ public partial class MainPage : ContentPage
                 dropImage.Source = source;
             }
         }
-    }
-
-    private void RefreshBtn_OnClicked(object? sender, EventArgs e)
-    {
-
     }
 }
