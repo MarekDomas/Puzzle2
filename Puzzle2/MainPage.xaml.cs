@@ -15,10 +15,10 @@ public partial class MainPage : ContentPage
     public MainPage()
     {
         InitializeComponent();
-        initialazePuzzle();
+        InitializePuzzle();
     }
     
-    void initialazePuzzle()
+    void InitializePuzzle()
     {
         var n = 0;
         for (var i = 0; i < gridWidth; i++)
@@ -30,20 +30,23 @@ public partial class MainPage : ContentPage
 
                 dropGestureRecognizer.Drop += OnDrop;
 
-                var image = new Image()
+                var image = new Image
                 {
                     WidthRequest = sideWidth,
                     HeightRequest = sideHeight,
-                    Source = $"image{n}.png"
+                    Source = $"image{n}.png",
+                    GestureRecognizers =
+                    {
+                        dragGestureRecognizer, dropGestureRecognizer
+                    }
                 };
-
-                image.GestureRecognizers.Add(dragGestureRecognizer);
-                image.GestureRecognizers.Add(dropGestureRecognizer);
 
                 puzzles.Add(image);
                 MainLayout.Children.Add(image);
 
-                AbsoluteLayout.SetLayoutBounds(image, new (i * sideWidth, j * sideHeight, sideWidth, sideHeight));
+                AbsoluteLayout.SetLayoutBounds(
+                    image, new (i * sideWidth, j * sideHeight,
+                    sideWidth, sideHeight));
 
                 n++;
             }
@@ -53,16 +56,19 @@ public partial class MainPage : ContentPage
 
     private async void OnDrop(object sender, DropEventArgs e)
     {
+        //Zdroj taženého obrázku
         var source = await e.Data.GetImageAsync();
+        
         var dropRecognizer = sender as DropGestureRecognizer;
-        var dropImage = dropRecognizer.Parent as Image;
+        //Cílený obrázek
+        var goalImage = dropRecognizer.Parent as Image;
 
         foreach (var puzzle in puzzles)
         {
             if (puzzle.Source == source)
             {
-                puzzle.Source = dropImage.Source;
-                dropImage.Source = source;
+                puzzle.Source = goalImage.Source;
+                goalImage.Source = source;
             }
         }
     }
