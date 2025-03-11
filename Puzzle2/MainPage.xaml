@@ -4,9 +4,21 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <AbsoluteLayout
-        x:Name="MainLayout"
-        HorizontalOptions="Center"
-        VerticalOptions="Center" />
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <AbsoluteLayout x:Name="MainLayout" />
+        <HorizontalStackLayout
+            Margin="0,10,0,0"
+            HorizontalOptions="Center"
+            Spacing="10">
+            <Button
+                Clicked="InitializePuzzle"
+                Text="Zamíchat"
+                WidthRequest="100" />
+            <Button
+                x:Name="ControlBtn"
+                Text="Kontrola"
+                WidthRequest="100" Clicked="ControlBtn_OnClicked"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
 
 </ContentPage>
